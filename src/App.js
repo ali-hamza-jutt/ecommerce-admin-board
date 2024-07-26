@@ -1,9 +1,11 @@
-
+import CategoryTable from "./components/CategoryTable";
+import Sidebar from "./components/SideBar";
 
 function App() {
   return (
     <div className="App">
-        Hello
+      <Sidebar/>
+        <CategoryTable/>
     </div>
   );
 }
