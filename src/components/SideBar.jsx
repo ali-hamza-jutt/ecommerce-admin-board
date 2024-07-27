@@ -71,7 +71,7 @@ const Sidebar = ({ setSelectedComponent }) => {
             <ListItem button sx={{ pl: 4 }} onClick={() => setSelectedComponent('ProductList')}>
               <ListItemText primary="Product List" />
             </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
+            <ListItem button sx={{ pl: 4 }} onClick={() => setSelectedComponent('AddProduct')}>
               <ListItemText primary="Add Product" />
             </ListItem>
           </List>
