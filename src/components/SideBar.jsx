@@ -1,4 +1,3 @@
-// Sidebar.js
 import React from 'react';
 import {
   Drawer,
@@ -21,7 +20,7 @@ import {
   People as PeopleIcon
 } from '@mui/icons-material';
 
-const Sidebar = () => {
+const Sidebar = ({ setSelectedComponent }) => {
   const [open, setOpen] = React.useState({
     ecommerce: false,
     category: true,
@@ -54,7 +53,7 @@ const Sidebar = () => {
           </ListSubheader>
         }
       >
-        <ListItem button>
+        <ListItem button onClick={() => setSelectedComponent('Dashboard')}>
           <ListItemIcon>
             <DashboardIcon />
           </ListItemIcon>
@@ -69,11 +68,11 @@ const Sidebar = () => {
         </ListItem>
         <Collapse in={open.ecommerce} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary="Category List" />
+            <ListItem button sx={{ pl: 4 }} onClick={() => setSelectedComponent('ProductList')}>
+              <ListItemText primary="Product List" />
             </ListItem>
             <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary="New Category" />
+              <ListItemText primary="Add Product" />
             </ListItem>
           </List>
         </Collapse>
@@ -86,11 +85,11 @@ const Sidebar = () => {
         </ListItem>
         <Collapse in={open.category} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItem button sx={{ pl: 4 }}>
+            <ListItem button sx={{ pl: 4 }} onClick={() => setSelectedComponent('CategoryList')}>
               <ListItemText primary="Category List" />
             </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary="New Category" />
+            <ListItem button sx={{ pl: 4 }} onClick={() => setSelectedComponent('AddCategory')}>
+              <ListItemText primary="Add Category" />
             </ListItem>
           </List>
         </Collapse>
@@ -104,10 +103,10 @@ const Sidebar = () => {
         <Collapse in={open.attributes} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary="Attributes List" />
+              <ListItemText primary="Attribute List" />
             </ListItem>
             <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary="New Attribute" />
+              <ListItemText primary="Add Attribute" />
             </ListItem>
           </List>
         </Collapse>
@@ -115,7 +114,7 @@ const Sidebar = () => {
           <ListItemIcon>
             <AssignmentIcon />
           </ListItemIcon>
-          <ListItemText primary="Order" />
+          <ListItemText primary="Orders" />
           {open.order ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={open.order} timeout="auto" unmountOnExit>
@@ -124,7 +123,7 @@ const Sidebar = () => {
               <ListItemText primary="Order List" />
             </ListItem>
             <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary="New Order" />
+              <ListItemText primary="Add Order" />
             </ListItem>
           </List>
         </Collapse>
@@ -132,7 +131,7 @@ const Sidebar = () => {
           <ListItemIcon>
             <PersonIcon />
           </ListItemIcon>
-          <ListItemText primary="User" />
+          <ListItemText primary="Users" />
           {open.user ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Collapse in={open.user} timeout="auto" unmountOnExit>
@@ -141,7 +140,7 @@ const Sidebar = () => {
               <ListItemText primary="User List" />
             </ListItem>
             <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary="New User" />
+              <ListItemText primary="Add User" />
             </ListItem>
           </List>
         </Collapse>
@@ -158,7 +157,7 @@ const Sidebar = () => {
               <ListItemText primary="Role List" />
             </ListItem>
             <ListItem button sx={{ pl: 4 }}>
-              <ListItemText primary="New Role" />
+              <ListItemText primary="Add Role" />
             </ListItem>
           </List>
         </Collapse>
