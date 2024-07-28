@@ -7,6 +7,8 @@ import SideBar from './components/SideBar';
 import Dashboard from './components/Dashboard';
 import ProductTable from './components/ProductTable';
 import ProductForm from './components/ProductForm';
+import AddUserForm from './components/AddUserForm';
+import UserTable from './components/UserTable';
 
 const initialCategories = [
   { name: 'Dried food', icon: '🥫', quantity: 1638, sale: 20 },
@@ -20,10 +22,15 @@ const initialProducts = [
   { id: '3', name: 'Product 3', price: 30, quantity: 300, sales: 150, image: 'https://via.placeholder.com/50' },
 ];
 
+const initialUsers = [
+  { id: '1', name: 'Ali Hamza', phone: '+923086117654', email: 'xyz@gmail.com', sales: 50, image: 'https://via.placeholder.com/50' },
+];
+
 const App = () => {
   const [selectedComponent, setSelectedComponent] = useState('Dashboard');
   const [categories, setCategories] = useState(initialCategories);
   const [products, setProducts] = useState(initialProducts);
+  const [users, setUsers] = useState(initialUsers);
 
   const handleAddCategory = (category) => {
     setCategories([...categories, category]);
@@ -33,6 +40,11 @@ const App = () => {
   const handleAddProduct = (product) => {
     setProducts([...products, product]);
     setSelectedComponent('ProductList'); // Automatically switch to the ProductList view
+  };
+
+  const handleAddUser = (user) => {
+    setUsers([...users, user]);
+    setSelectedComponent('UserTable'); // Automatically switch to the UserTable view
   };
 
   const renderComponent = () => {
@@ -47,6 +59,10 @@ const App = () => {
         return <ProductTable products={products} />;
       case 'AddProduct':
         return <ProductForm onAddProduct={handleAddProduct} />;
+      case 'AddUser':
+        return <AddUserForm onAddUser={handleAddUser} />;
+      case 'UserTable':
+        return <UserTable users={users} />;
       default:
         return <Dashboard />;
     }

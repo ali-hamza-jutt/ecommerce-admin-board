@@ -136,10 +136,10 @@ const Sidebar = ({ setSelectedComponent }) => {
         </ListItem>
         <Collapse in={open.user} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItem button sx={{ pl: 4 }}>
+            <ListItem button sx={{ pl: 4 }}  onClick={() => setSelectedComponent('UserTable')}>
               <ListItemText primary="User List" />
             </ListItem>
-            <ListItem button sx={{ pl: 4 }}>
+            <ListItem button sx={{ pl: 4 }}  onClick={() => setSelectedComponent('AddUser')}>
               <ListItemText primary="Add User" />
             </ListItem>
           </List>

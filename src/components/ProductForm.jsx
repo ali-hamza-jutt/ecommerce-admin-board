@@ -20,7 +20,7 @@ const ProductForm = ({ onAddProduct }) => {
     setImage('');
   };
 
-  return (
+  return (  
     <Paper sx={{ padding: 2, marginBottom: 2 }}>
       <Typography variant="h6" gutterBottom>
         Add New Product
