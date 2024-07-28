@@ -1,6 +1,6 @@
 .dashboard-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
     padding: 20px;
 }
@@ -23,4 +23,9 @@
     margin: 10px 0;
     font-size: 2em;
     color: #333;
+}
+
+.table-card {
+    grid-column: span 2; /* Adjust based on your layout preferences */
+    overflow-x: auto;
 }

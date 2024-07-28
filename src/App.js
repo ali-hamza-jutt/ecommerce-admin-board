@@ -58,7 +58,10 @@ const App = () => {
   const renderComponent = () => {
     switch (selectedComponent) {
       case 'Dashboard':
-        return <Dashboard />;
+        return <Dashboard  products={products}
+        orders={orders}
+        users={users}
+        categories={categories}/>;
       case 'CategoryList':
         return <CategoryTable categories={categories} />;
       case 'AddCategory':
@@ -76,7 +79,10 @@ const App = () => {
       case 'AddOrder':
         return <OrderForm onAddOrder={handleAddOrder} products={products} />;
       default:
-        return <Dashboard />;
+        return <Dashboard  products={products}
+        orders={orders}
+        users={users}
+        categories={categories} />;
     }
   };
 
