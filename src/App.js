@@ -12,27 +12,12 @@ import UserTable from './components/UserTable';
 import OrderTable from './components/OrderTable';
 import OrderForm from './components/OrderForm';
 
-const initialCategories = [
-  { name: 'Dried food', icon: '🥫', quantity: 1638, sale: 20 },
-  { name: 'Wet food', icon: '🥤', quantity: 1638, sale: 20 },
-  { name: 'Supplemental food', icon: '🍲', quantity: 1638, sale: 20 }
-];
-
-const initialProducts = [
-  { id: '1', name: 'Product 1', price: 10, quantity: 100, sales: 50, image: 'https://via.placeholder.com/50' },
-  { id: '2', name: 'Product 2', price: 20, quantity: 200, sales: 100, image: 'https://via.placeholder.com/50' },
-  { id: '3', name: 'Product 3', price: 30, quantity: 300, sales: 150, image: 'https://via.placeholder.com/50' },
-];
-
-const initialUsers = [
-  { id: '1', name: 'Ali Hamza', phone: '+923086117654', email: 'xyz@gmail.com', sales: 50, image: 'https://via.placeholder.com/50' },
-];
 
 const App = () => {
   const [selectedComponent, setSelectedComponent] = useState('Dashboard');
-  const [categories, setCategories] = useState(initialCategories);
-  const [products, setProducts] = useState(initialProducts);
-  const [users, setUsers] = useState(initialUsers);
+  const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [users, setUsers] = useState([]);
   const [orders, setOrders] = useState([]);
 
   const handleAddCategory = (category) => {

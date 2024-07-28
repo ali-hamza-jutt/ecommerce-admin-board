@@ -80,7 +80,7 @@ const OrderForm = ({ products, onAddOrder }) => {
       '& .MuiSvgIcon-root': {
         color: '#fff',
       },
-    }
+    },
   };
 
   return (

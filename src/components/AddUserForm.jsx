@@ -32,7 +32,24 @@ const AddUserForm = ({ onAddUser }) => {
     },
     input: {
       marginBottom: '16px',
-    }
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: '#fff',
+        },
+        '&:hover fieldset': {
+          borderColor: '#fff',
+        },
+        '&.Mui-focused fieldset': {
+          borderColor: '#fff',
+        },
+      },
+      '& .MuiInputLabel-root': {
+        color: '#fff',
+      },
+      '& .MuiInputBase-input': {
+        color: '#fff',
+      },
+    },
   };
 
   return (
