@@ -12,7 +12,7 @@ import {
 
 const OrderTable = ({ orders }) => {
   return (
-    <Box p={2}>
+    <Box p={2} >
       <h2>Orders</h2>
       <TableContainer component={Paper}>
         <Table>
