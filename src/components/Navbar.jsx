@@ -1,8 +1,11 @@
-// src/Navbar.js
+// src/components/Navbar.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Navbar.css';
 
 const Navbar = () => {
+    const navigate = useNavigate();
+
     return (
         <nav className="navbar">
             <div className="search-container">
@@ -21,6 +24,7 @@ const Navbar = () => {
                     <span className="role">Admin</span>
                 </div>
                 <div className="icon"><i className="fa fa-cog"></i></div>
+                <button className="login-button" onClick={() => navigate('/admin-login')}>Admin Login</button>
             </div>
         </nav>
     );

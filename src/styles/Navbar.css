@@ -99,4 +99,14 @@
       margin: 0;
     }
   }
-  
+  .login-button {
+    background-color: #ff9900;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #e68a00;
+}

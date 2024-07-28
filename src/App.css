@@ -1,31 +1,32 @@
 .App {
-    display: flex;
-  }
-  
-  .Sidebar {
-    width: 240px; /* Sidebar width */
-    flex-shrink: 0;
-  }
-  
-  .main-content {
-    flex: 1; /* Takes the remaining space */
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .navbar {
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000; /* Ensure Navbar stays on top */
-  }
-  
-  .dashboard-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    padding: 20px;
-  }
-  
+  display: flex;
+}
+
+.Sidebar {
+  width: 240px; /* Sidebar width */
+  flex-shrink: 0;
+}
+
+.main-content {
+  flex: 1; /* Takes the remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Ensure Navbar stays on top */
+  width: calc(100% - 240px); /* Adjust for the Sidebar width */
+  left: 240px; /* Align with the Sidebar */
+}
+
+.dashboard-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+}
