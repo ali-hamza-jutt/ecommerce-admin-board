@@ -1,52 +1,52 @@
 import React from 'react';
 import {
   Box,
-  Button,
-  InputBase,
   Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
-  TableRow,
-  MenuItem,
-  Select
+  TableRow
 } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import SearchIcon from '@mui/icons-material/Search';
 
 const CategoryTable = ({ categories }) => {
+  const styles = {
+    container: {
+      padding: '16px',
+      backgroundColor: '#1e1e2f',
+      color: '#fff'
+    },
+    header: {
+      marginBottom: '16px',
+    },
+    table: {
+      backgroundColor: '#2e2e3f',
+    },
+    tableHeader: {
+      backgroundColor: '#3e3e4f',
+    },
+    tableCell: {
+      color: '#fff',
+    },
+  };
+
   return (
-    <Box p={2}>
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-        <h2>Categories</h2>
-      </Box>
-      <Paper sx={{ display: 'flex', alignItems: 'center', p: 1, mb: 2 }}>
-        <Select defaultValue={10} variant="outlined" sx={{ mr: 2 }}>
-          <MenuItem value={10}>10</MenuItem>
-          <MenuItem value={20}>20</MenuItem>
-          <MenuItem value={30}>30</MenuItem>
-        </Select>
-        <InputBase placeholder="Search here..." startAdornment={<SearchIcon />} sx={{ ml: 1, flex: 1 }} />
-      </Paper>
-      <TableContainer component={Paper}>
+    <Box sx={styles.container}>
+      <h2 sx={styles.header}>Categories</h2>
+      <TableContainer component={Paper} sx={styles.table}>
         <Table>
           <TableHead>
-            <TableRow>
-              <TableCell>Category</TableCell>
-              <TableCell>Icon</TableCell>
-              <TableCell>Quantity</TableCell>
-              <TableCell>Sale</TableCell>
+            <TableRow sx={styles.tableHeader}>
+              <TableCell sx={styles.tableCell}>Category</TableCell>
+              <TableCell sx={styles.tableCell}>Category ID</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {categories.map((category) => (
-              <TableRow key={category.name}>
-                <TableCell>{category.name}</TableCell>
-                <TableCell>{category.icon}</TableCell>
-                <TableCell>{category.quantity.toLocaleString()}</TableCell>
-                <TableCell>{category.sale}</TableCell>
+              <TableRow key={category.id}>
+                <TableCell sx={styles.tableCell}>{category.name}</TableCell>
+                <TableCell sx={styles.tableCell}>{category.id}</TableCell>
               </TableRow>
             ))}
           </TableBody>

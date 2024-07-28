@@ -20,8 +20,44 @@ const ProductForm = ({ onAddProduct }) => {
     setImage('');
   };
 
+  const styles = {
+    container: {
+      padding: '16px',
+      marginBottom: '16px',
+      backgroundColor: '#1e1e2f',
+      color: '#fff',
+    },
+    button: {
+      backgroundColor: '#e68a00',
+      color: '#fff',
+      '&:hover': {
+        backgroundColor: '#d17a00',
+      },
+    },
+    input: {
+      marginBottom: '16px',
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: '#fff',
+        },
+        '&:hover fieldset': {
+          borderColor: '#fff',
+        },
+        '&.Mui-focused fieldset': {
+          borderColor: '#fff',
+        },
+      },
+      '& .MuiInputLabel-root': {
+        color: '#fff',
+      },
+      '& .MuiInputBase-input': {
+        color: '#fff',
+      },
+    }
+  };
+
   return (  
-    <Paper sx={{ padding: 2, marginBottom: 2 }}>
+    <Paper sx={styles.container}>
       <Typography variant="h6" gutterBottom>
         Add New Product
       </Typography>
@@ -32,6 +68,7 @@ const ProductForm = ({ onAddProduct }) => {
           onChange={(e) => setName(e.target.value)}
           fullWidth
           margin="normal"
+          sx={styles.input}
         />
         <TextField
           label="Price"
@@ -40,6 +77,7 @@ const ProductForm = ({ onAddProduct }) => {
           fullWidth
           margin="normal"
           type="number"
+          sx={styles.input}
         />
         <TextField
           label="Quantity"
@@ -48,6 +86,7 @@ const ProductForm = ({ onAddProduct }) => {
           fullWidth
           margin="normal"
           type="number"
+          sx={styles.input}
         />
         <TextField
           label="Sales"
@@ -56,6 +95,7 @@ const ProductForm = ({ onAddProduct }) => {
           fullWidth
           margin="normal"
           type="number"
+          sx={styles.input}
         />
         <TextField
           label="Image URL"
@@ -63,8 +103,9 @@ const ProductForm = ({ onAddProduct }) => {
           onChange={(e) => setImage(e.target.value)}
           fullWidth
           margin="normal"
+          sx={styles.input}
         />
-        <Button type="submit" variant="contained" color="primary" fullWidth>
+        <Button type="submit" variant="contained" sx={styles.button} fullWidth>
           Add Product
         </Button>
       </form>

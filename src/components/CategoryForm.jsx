@@ -1,23 +1,55 @@
 import React, { useState } from 'react';
 import { Box, Button, TextField, Paper, Typography } from '@mui/material';
+import { v4 as uuidv4 } from 'uuid';
 
 const CategoryForm = ({ onAddCategory }) => {
   const [name, setName] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [sale, setSale] = useState('');
-  const [icon, setIcon] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddCategory({ name, quantity: parseInt(quantity), sale: parseInt(sale), icon });
+    const id = uuidv4();
+    onAddCategory({ id, name });
     setName('');
-    setQuantity('');
-    setSale('');
-    setIcon('');
+  };
+
+  const styles = {
+    container: {
+      padding: '16px',
+      marginBottom: '16px',
+      backgroundColor: '#1e1e2f',
+      color: '#fff',
+    },
+    button: {
+      backgroundColor: '#e68a00',
+      color: '#fff',
+      '&:hover': {
+        backgroundColor: '#d17a00',
+      },
+    },
+    input: {
+      marginBottom: '16px',
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: '#fff',
+        },
+        '&:hover fieldset': {
+          borderColor: '#fff',
+        },
+        '&.Mui-focused fieldset': {
+          borderColor: '#fff',
+        },
+      },
+      '& .MuiInputLabel-root': {
+        color: '#fff',
+      },
+      '& .MuiInputBase-input': {
+        color: '#fff',
+      },
+    }
   };
 
   return (
-    <Paper sx={{ padding: 2, marginBottom: 2 }}>
+    <Paper sx={styles.container}>
       <Typography variant="h6" gutterBottom>
         Add New Category
       </Typography>
@@ -28,31 +60,9 @@ const CategoryForm = ({ onAddCategory }) => {
           onChange={(e) => setName(e.target.value)}
           fullWidth
           margin="normal"
+          sx={styles.input}
         />
-        <TextField
-          label="Quantity"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-          fullWidth
-          margin="normal"
-          type="number"
-        />
-        <TextField
-          label="Sale"
-          value={sale}
-          onChange={(e) => setSale(e.target.value)}
-          fullWidth
-          margin="normal"
-          type="number"
-        />
-        <TextField
-          label="Icon"
-          value={icon}
-          onChange={(e) => setIcon(e.target.value)}
-          fullWidth
-          margin="normal"
-        />
-        <Button type="submit" variant="contained" color="primary" fullWidth>
+        <Button type="submit" variant="contained" sx={styles.button} fullWidth>
           Add Category
         </Button>
       </form>

@@ -96,13 +96,14 @@ const Dashboard = ({ products, orders, users, categories }) => {
     };
 
     return (
-        <div className="dashboard-container">
+        <div className="dashboard-container" >
             <div className="card">
                 <h3>Total Sales Trend</h3>
                 <p>34,945</p>
                 <Line data={salesData} options={options} />
             </div>
-            <div className="card table-card">
+            <div className="card table-card" style={{ backgroundColor: '#1e1e2f', border: '2px solid #ffffff' }}
+            >
                 <ProductTable products={products} />
             </div>
             <div className="card">
@@ -110,7 +111,8 @@ const Dashboard = ({ products, orders, users, categories }) => {
                 <p>$37,802</p>
                 <Bar data={incomeData} options={options} />
             </div>
-            <div className="card table-card">
+            <div className="card table-card" style={{ backgroundColor: '#1e1e2f', border: '2px solid #ffffff' }}
+            >
                 <CategoryTable categories={categories} />
             </div>
             <div className="card">
@@ -118,7 +120,8 @@ const Dashboard = ({ products, orders, users, categories }) => {
                 <p>34,945</p>
                 <Radar data={ordersData} options={options} />
             </div>
-            <div className="card table-card">
+            <div className="card table-card" style={{ backgroundColor: '#1e1e2f', border: '2px solid #ffffff' }}
+            >
                 <OrderTable orders={orders} />
             </div>
             <div className="card">
@@ -128,7 +131,8 @@ const Dashboard = ({ products, orders, users, categories }) => {
             </div>
           
 
-            <div className="card table-card">
+            <div className="card table-card" style={{ backgroundColor: '#1e1e2f', border: '2px solid #ffffff' }}
+            >
                 <UserTable users={users} />
             </div>
 

@@ -1,96 +1,95 @@
-import React from 'react';
-import { Container, Grid, TextField, Typography, FormControl, FormControlLabel, Radio, RadioGroup, FormLabel, IconButton, InputAdornment, Button, Box } from '@mui/material';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import React, { useState } from 'react';
+import { Box, Button, TextField, Paper, Typography } from '@mui/material';
+import { v4 as uuidv4 } from 'uuid';
 
-const AccountForm = () => {
-  const [showPassword, setShowPassword] = React.useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
+const AddUserForm = ({ onAddUser }) => {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleClickShowPassword = () => setShowPassword(!showPassword);
-  const handleClickShowConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const id = uuidv4();
+    onAddUser({ id, username, email, password });
+    setUsername('');
+    setEmail('');
+    setPassword('');
+  };
+
+  const styles = {
+    container: {
+      padding: '16px',
+      marginBottom: '16px',
+      backgroundColor: '#1e1e2f',
+      color: '#fff',
+    },
+    button: {
+      backgroundColor: '#e68a00',
+      color: '#fff',
+      '&:hover': {
+        backgroundColor: '#d17a00',
+      },
+    },
+    input: {
+      marginBottom: '16px',
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: '#fff',
+        },
+        '&:hover fieldset': {
+          borderColor: '#fff',
+        },
+        '&.Mui-focused fieldset': {
+          borderColor: '#fff',
+        },
+      },
+      '& .MuiInputLabel-root': {
+        color: '#fff',
+      },
+      '& .MuiInputBase-input': {
+        color: '#fff',
+      },
+    }
+  };
 
   return (
-    <Container maxWidth="lg" style={{ backgroundColor: '#ffffff', padding: '30px', borderRadius: '8px', boxShadow: '0 0 15px rgba(0, 0, 0, 0.1)' }}>
-      <Grid container spacing={3}>
-        {/* Account Information Section */}
-        <Grid item xs={12} md={6}>
-          <Typography variant="h6" gutterBottom>
-            Account
-          </Typography>
-          <Typography variant="body2" gutterBottom>
-            Fill in the information below to add a new account
-          </Typography>
-          <TextField fullWidth margin="normal" label="Username" variant="outlined" />
-          <TextField fullWidth margin="normal" label="Email" variant="outlined" />
-          <TextField
-            fullWidth
-            margin="normal"
-            label="Enter password"
-            type={showPassword ? 'text' : 'password'}
-            variant="outlined"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          <TextField
-            fullWidth
-            margin="normal"
-            label="Confirm password"
-            type={showConfirmPassword ? 'text' : 'password'}
-            variant="outlined"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle confirm password visibility"
-                    onClick={handleClickShowConfirmPassword}
-                    edge="end"
-                  >
-                    {showConfirmPassword ? <Visibility /> : <VisibilityOff />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Grid>
-
-        {/* Permission Section */}
-        <Grid item xs={12} md={6}>
-          <Typography variant="h6" gutterBottom>
-            Permission
-          </Typography>
-          <Typography variant="body2" gutterBottom>
-            Items that the account is allowed to edit
-          </Typography>
-          {['Add product', 'Update product', 'Delete product', 'Apply discount', 'Create coupon'].map((permission, index) => (
-            <FormControl component="fieldset" margin="normal" key={index}>
-              <FormLabel component="legend">{permission}</FormLabel>
-              <RadioGroup row defaultValue="deny">
-                <FormControlLabel value="allow" control={<Radio />} label="Allow" />
-                <FormControlLabel value="deny" control={<Radio />} label="Deny" />
-              </RadioGroup>
-            </FormControl>
-          ))}
-        </Grid>
-      </Grid>
-      <Box display="flex" justifyContent="flex-end" mt={3}>
-        <Button variant="contained" color="primary">
-          Submit
+    <Paper sx={styles.container}>
+      <Typography variant="h6" gutterBottom>
+        Add New User
+      </Typography>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          label="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          fullWidth
+          margin="normal"
+          sx={styles.input}
+        />
+        <TextField
+          label="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          fullWidth
+          margin="normal"
+          type="email"
+          sx={styles.input}
+        />
+        <TextField
+          label="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          fullWidth
+          margin="normal"
+          type="password"
+          sx={styles.input}
+        />
+        <Button type="submit" variant="contained" sx={styles.button} fullWidth>
+          Add User
         </Button>
-      </Box>
-    </Container>
+      </form>
+    </Paper>
   );
 };
 
-export default AccountForm;
+export default AddUserForm;

@@ -11,31 +11,51 @@ import {
 } from '@mui/material';
 
 const OrderTable = ({ orders }) => {
+  const styles = {
+    container: {
+      padding: '16px',
+      backgroundColor: '#1e1e2f',
+      color: '#fff'
+    },
+    header: {
+      marginBottom: '16px',
+    },
+    table: {
+      backgroundColor: '#2e2e3f',
+    },
+    tableHeader: {
+      backgroundColor: '#3e3e4f',
+    },
+    tableCell: {
+      color: '#fff',
+    },
+  };
+
   return (
-    <Box p={2} >
-      <h2>Orders</h2>
-      <TableContainer component={Paper}>
+    <Box sx={styles.container}>
+      <h2 sx={styles.header}>Orders</h2>
+      <TableContainer component={Paper} sx={styles.table}>
         <Table>
           <TableHead>
-            <TableRow>
-              <TableCell>Product</TableCell>
-              <TableCell>Order ID</TableCell>
-              <TableCell>Price</TableCell>
-              <TableCell>Quantity</TableCell>
-              <TableCell>Total Bill</TableCell>
+            <TableRow sx={styles.tableHeader}>
+              <TableCell sx={styles.tableCell}>Product</TableCell>
+              <TableCell sx={styles.tableCell}>Order ID</TableCell>
+              <TableCell sx={styles.tableCell}>Price</TableCell>
+              <TableCell sx={styles.tableCell}>Quantity</TableCell>
+              <TableCell sx={styles.tableCell}>Total Bill</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {orders.map((order) => (
               <TableRow key={order.id}>
-                <TableCell>
+                <TableCell sx={styles.tableCell}>
                   <img src={order.product.image} alt={order.product.name} style={{ width: 50, height: 50, marginRight: 10 }} />
                   {order.product.name}
                 </TableCell>
-                <TableCell>{order.id}</TableCell>
-                <TableCell>${order.product.price.toFixed(2)}</TableCell>
-                <TableCell>{order.quantity}</TableCell>
-                <TableCell>${order.totalBill.toFixed(2)}</TableCell>
+                <TableCell sx={styles.tableCell}>{order.id}</TableCell>
+                <TableCell sx={styles.tableCell}>${order.product.price.toFixed(2)}</TableCell>
+                <TableCell sx={styles.tableCell}>{order.quantity}</TableCell>
+                <TableCell sx={styles.tableCell}>${order.totalBill.toFixed(2)}</TableCell>
               </TableRow>
             ))}
           </TableBody>

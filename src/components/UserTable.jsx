@@ -7,50 +7,48 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow,
-  InputBase,
-  Select,
-  MenuItem
+  TableRow
 } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
 
 const UserTable = ({ users }) => {
+  const styles = {
+    container: {
+      padding: '16px',
+      backgroundColor: '#1e1e2f',
+      color: '#fff'
+    },
+    header: {
+      marginBottom: '16px',
+    },
+    table: {
+      backgroundColor: '#2e2e3f',
+    },
+    tableHeader: {
+      backgroundColor: '#3e3e4f',
+    },
+    tableCell: {
+      color: '#fff',
+    },
+  };
+
   return (
-    <Box p={2}>
-      <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-        <h2>Users</h2>
-      </Box>
-      <Paper sx={{ display: 'flex', alignItems: 'center', p: 1, mb: 2 }}>
-        <Select defaultValue={10} variant="outlined" sx={{ mr: 2 }}>
-          <MenuItem value={10}>10</MenuItem>
-          <MenuItem value={20}>20</MenuItem>
-          <MenuItem value={30}>30</MenuItem>
-        </Select>
-        <InputBase placeholder="Search here..." startAdornment={<SearchIcon />} sx={{ ml: 1, flex: 1 }} />
-      </Paper>
-      <TableContainer component={Paper}>
+    <Box sx={styles.container}>
+      <h2 sx={styles.header}>Users</h2>
+      <TableContainer component={Paper} sx={styles.table}>
         <Table>
           <TableHead>
-            <TableRow>
-              <TableCell></TableCell>
-              <TableCell>User ID</TableCell>
-              <TableCell>User</TableCell>
-              <TableCell>Phone</TableCell>
-              <TableCell>Email</TableCell>
-              <TableCell>Roles</TableCell> {/* Added Roles Column */}
+            <TableRow sx={styles.tableHeader}>
+              <TableCell sx={styles.tableCell}>Username</TableCell>
+              <TableCell sx={styles.tableCell}>Email</TableCell>
+              <TableCell sx={styles.tableCell}>User ID</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {users.map((user) => (
               <TableRow key={user.id}>
-                <TableCell>
-                  <img src={user.image} alt={user.name} style={{ width: 50, height: 50, marginRight: 10 }} />
-                </TableCell>
-                <TableCell>{user.id}</TableCell>
-                <TableCell>{user.name}</TableCell>
-                <TableCell>{user.phone}</TableCell>
-                <TableCell>{user.email}</TableCell>
-                <TableCell>{user.roles}</TableCell> {/* Display Roles */}
+                <TableCell sx={styles.tableCell}>{user.username}</TableCell>
+                <TableCell sx={styles.tableCell}>{user.email}</TableCell>
+                <TableCell sx={styles.tableCell}>{user.id}</TableCell>
               </TableRow>
             ))}
           </TableBody>

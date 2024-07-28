@@ -48,7 +48,11 @@ const Sidebar = ({ setSelectedComponent }) => {
     logo: {
       display: 'flex',
       justifyContent: 'center',
-      backgroundColor:'#1e1e2f'
+      backgroundColor:'#1e1e2f',
+        color: '#fff',
+        fontFamily: 'Playwrite PL',
+        cursor: 'default'    
+      
     },
     listItem: {
       '&:hover': {
@@ -78,7 +82,8 @@ const Sidebar = ({ setSelectedComponent }) => {
       <List
         subheader={
           <ListSubheader component="div" id="nested-list-subheader" sx={styles.logo}>
-            <h1 style={{color:'#fff'}}>.Asos</h1>
+           <h1 style={{ color: '#fff', fontFamily: 'Playwrite PL', cursor: 'default' }}>.Asos</h1>
+
           </ListSubheader>
         }
       >
@@ -122,23 +127,6 @@ const Sidebar = ({ setSelectedComponent }) => {
             </ListItem>
           </List>
         </Collapse>
-        <ListItem button onClick={() => handleClick('attributes')} sx={styles.listItem}>
-          <ListItemIcon sx={styles.listIcon}>
-            <LabelIcon />
-          </ListItemIcon>
-          <ListItemText primary="Attributes" />
-          {open.attributes ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={open.attributes} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItem button sx={styles.nestedListItem}>
-              <ListItemText primary="Attribute List" />
-            </ListItem>
-            <ListItem button sx={styles.nestedListItem}>
-              <ListItemText primary="Add Attribute" />
-            </ListItem>
-          </List>
-        </Collapse>
         <ListItem button onClick={() => handleClick('order')} sx={styles.listItem}>
           <ListItemIcon sx={styles.listIcon}>
             <AssignmentIcon />
@@ -173,23 +161,8 @@ const Sidebar = ({ setSelectedComponent }) => {
             </ListItem>
           </List>
         </Collapse>
-        <ListItem button onClick={() => handleClick('roles')} sx={styles.listItem}>
-          <ListItemIcon sx={styles.listIcon}>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText primary="Roles" />
-          {open.roles ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={open.roles} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItem button sx={styles.nestedListItem}>
-              <ListItemText primary="Role List" />
-            </ListItem>
-            <ListItem button sx={styles.nestedListItem}>
-              <ListItemText primary="Add Role" />
-            </ListItem>
-          </List>
-        </Collapse>
+       
+      
       </List>
     </Drawer>
   );
