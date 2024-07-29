@@ -11,9 +11,10 @@ import AddUserForm from './components/AddUserForm';
 import UserTable from './components/UserTable';
 import OrderTable from './components/OrderTable';
 import OrderForm from './components/OrderForm';
-
+import useScreenSize from './hooks/useScreenSize.js';
 
 const App = () => {
+  const { isMobile } = useScreenSize();
   const [selectedComponent, setSelectedComponent] = useState('Dashboard');
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
@@ -43,10 +44,14 @@ const App = () => {
   const renderComponent = () => {
     switch (selectedComponent) {
       case 'Dashboard':
-        return <Dashboard  products={products}
-        orders={orders}
-        users={users}
-        categories={categories}/>;
+        return (
+          <Dashboard
+            products={products}
+            orders={orders}
+            users={users}
+            categories={categories}
+          />
+        );
       case 'CategoryList':
         return <CategoryTable categories={categories} />;
       case 'AddCategory':
@@ -64,21 +69,34 @@ const App = () => {
       case 'AddOrder':
         return <OrderForm onAddOrder={handleAddOrder} products={products} />;
       default:
-        return <Dashboard  products={products}
-        orders={orders}
-        users={users}
-        categories={categories} />;
+        return (
+          <Dashboard
+            products={products}
+            orders={orders}
+            users={users}
+            categories={categories}
+          />
+        );
     }
   };
 
   return (
-    <Box display="flex">
-      <Sidebar setSelectedComponent={setSelectedComponent} />
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Navbar />
-        {renderComponent()}
+    <div>
+      {isMobile ? (
+        <Box >
+          <Navbar />
+          {renderComponent()}
+        </Box>
+      ) : (
+        <Box display="flex">
+        <Sidebar setSelectedComponent={setSelectedComponent} />
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <Navbar />
+          {renderComponent()}
+        </Box>
       </Box>
-    </Box>
+      )}
+    </div>
   );
 };
 
