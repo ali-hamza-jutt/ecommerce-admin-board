@@ -14,13 +14,14 @@ import {
   Category as CategoryIcon,
   ExpandLess,
   ExpandMore,
-  Label as LabelIcon,
   Assignment as AssignmentIcon,
   Person as PersonIcon,
-  People as PeopleIcon,
 } from '@mui/icons-material';
+import useScreenSize from '../hooks/useScreenSize.js';
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 
-const Sidebar = ({ setSelectedComponent }) => {
+const Sidebar = ({ isOpen, toggleSidebar, setSelectedComponent }) => {
+  const { isMobile } = useScreenSize();
   const [open, setOpen] = React.useState({
     ecommerce: false,
     category: true,
@@ -38,6 +39,8 @@ const Sidebar = ({ setSelectedComponent }) => {
     drawer: {
       width: 240,
       flexShrink: 0,
+      transition: 'transform 0.3s ease-in-out',
+      transform: isOpen ? 'translateX(0)' : 'translateX(-100%)',
       '& .MuiDrawer-paper': {
         width: 240,
         boxSizing: 'border-box',
@@ -45,14 +48,19 @@ const Sidebar = ({ setSelectedComponent }) => {
         color: '#fff',
       },
     },
+    mobileHeader: {
+      width: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+    },
     logo: {
       display: 'flex',
       justifyContent: 'center',
-      backgroundColor:'#1e1e2f',
-        color: '#fff',
-        fontFamily: 'Playwrite PL',
-        cursor: 'default'    
-      
+      backgroundColor: '#1e1e2f',
+      color: '#fff',
+      fontFamily: 'Playwrite PL',
+      cursor: 'default',
     },
     listItem: {
       '&:hover': {
@@ -78,12 +86,18 @@ const Sidebar = ({ setSelectedComponent }) => {
   };
 
   return (
-    <Drawer variant="permanent" sx={styles.drawer}>
+    <Drawer variant={isMobile ? "temporary" : "permanent"} sx={styles.drawer} open={isOpen} onClose={toggleSidebar}>
       <List
         subheader={
           <ListSubheader component="div" id="nested-list-subheader" sx={styles.logo}>
-           <h1 style={{ color: '#fff', fontFamily: 'Playwrite PL', cursor: 'default' }}>.Asos</h1>
-
+            {isMobile ? (
+              <div style={styles.mobileHeader}>
+                <h1 style={{ color: '#fff', fontFamily: 'Playwrite PL', cursor: 'default' }}>.Asos</h1>
+                <MenuRoundedIcon onClick={toggleSidebar} />
+              </div>
+            ) : (
+              <h1 style={{ color: '#fff', fontFamily: 'Playwrite PL', cursor: 'default' }}>.Asos</h1>
+            )}
           </ListSubheader>
         }
       >
@@ -161,8 +175,6 @@ const Sidebar = ({ setSelectedComponent }) => {
             </ListItem>
           </List>
         </Collapse>
-       
-      
       </List>
     </Drawer>
   );

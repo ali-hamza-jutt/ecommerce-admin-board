@@ -20,6 +20,7 @@ const App = () => {
   const [products, setProducts] = useState([]);
   const [users, setUsers] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const handleAddCategory = (category) => {
     setCategories([...categories, category]);
@@ -80,21 +81,33 @@ const App = () => {
     }
   };
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
     <div>
       {isMobile ? (
-        <Box >
-          <Navbar />
+        <Box>
+          <Navbar toggleSidebar={toggleSidebar} />
+          <Sidebar
+            isOpen={sidebarOpen}
+            toggleSidebar={toggleSidebar}
+            setSelectedComponent={setSelectedComponent}
+          />
           {renderComponent()}
         </Box>
       ) : (
         <Box display="flex">
-        <Sidebar setSelectedComponent={setSelectedComponent} />
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <Navbar />
-          {renderComponent()}
+          <Sidebar
+            isOpen
+            setSelectedComponent={setSelectedComponent}
+          />
+          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+            <Navbar />
+            {renderComponent()}
+          </Box>
         </Box>
-      </Box>
       )}
     </div>
   );

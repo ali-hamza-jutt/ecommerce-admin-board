@@ -29,3 +29,20 @@
     grid-column: span 2; /* Adjust based on your layout preferences */
     overflow-x: auto;
 }
+
+/* Media Query for Small Screens */
+@media (max-width: 768px) {
+    .dashboard-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .card, .table-card {
+        flex: 1;
+    }
+
+    .table-card {
+        overflow: hidden; /* Hide horizontal overflow on small screens */
+    }
+}
