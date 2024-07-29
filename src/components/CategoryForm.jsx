@@ -12,45 +12,8 @@ const CategoryForm = ({ onAddCategory }) => {
     setName('');
   };
 
-  const styles = {
-    container: {
-      padding: '16px',
-      marginBottom: '16px',
-      backgroundColor: '#1e1e2f',
-      color: '#fff',
-      marginTop:'16px'
-    },
-    button: {
-      backgroundColor: '#e68a00',
-      color: '#fff',
-      '&:hover': {
-        backgroundColor: '#d17a00',
-      },
-    },
-    input: {
-      marginBottom: '16px',
-      '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-          borderColor: '#fff',
-        },
-        '&:hover fieldset': {
-          borderColor: '#fff',
-        },
-        '&.Mui-focused fieldset': {
-          borderColor: '#fff',
-        },
-      },
-      '& .MuiInputLabel-root': {
-        color: '#fff',
-      },
-      '& .MuiInputBase-input': {
-        color: '#fff',
-      },
-    }
-  };
-
   return (
-    <Paper sx={styles.container}>
+    <Paper sx={{ padding: '16px', marginBottom: '16px', backgroundColor: '#1e1e2f', color: '#fff', marginTop: '16px' }}>
       <Typography variant="h6" gutterBottom>
         Add New Category
       </Typography>
@@ -61,9 +24,28 @@ const CategoryForm = ({ onAddCategory }) => {
           onChange={(e) => setName(e.target.value)}
           fullWidth
           margin="normal"
-          sx={styles.input}
+          sx={{
+            marginBottom: '16px',
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: '#fff',
+              },
+              '&:hover fieldset': {
+                borderColor: '#fff',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: '#fff',
+              },
+            },
+            '& .MuiInputLabel-root': {
+              color: '#fff',
+            },
+            '& .MuiInputBase-input': {
+              color: '#fff',
+            },
+          }}
         />
-        <Button type="submit" variant="contained" sx={styles.button} fullWidth>
+        <Button type="submit" variant="contained" sx={{ backgroundColor: '#e68a00', color: '#fff', '&:hover': { backgroundColor: '#d17a00' } }} fullWidth>
           Add Category
         </Button>
       </form>

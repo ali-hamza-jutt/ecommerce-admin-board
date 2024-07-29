@@ -37,6 +37,7 @@ const Sidebar = ({ isOpen, toggleSidebar, setSelectedComponent }) => {
 
   const styles = {
     drawer: {
+      minHeight: '100vh',
       width: 240,
       flexShrink: 0,
       transition: 'transform 0.3s ease-in-out',

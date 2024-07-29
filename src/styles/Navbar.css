@@ -51,6 +51,12 @@
   margin-right: 5px;
 }
 
+.menu-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .navbar {

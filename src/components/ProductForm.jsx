@@ -11,6 +11,10 @@ const ProductForm = ({ onAddProduct }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (price <= 0 || quantity < 0 || sales < 0) {
+      alert('Price, Quantity, and Sales must be valid numbers');
+      return;
+    }
     const id = uuidv4();
     onAddProduct({ id, name, price: parseFloat(price), quantity: parseInt(quantity), sales: parseInt(sales), image });
     setName('');
@@ -26,7 +30,7 @@ const ProductForm = ({ onAddProduct }) => {
       marginBottom: '16px',
       backgroundColor: '#1e1e2f',
       color: '#fff',
-      marginTop:'16px'
+      marginTop: '16px'
     },
     button: {
       backgroundColor: '#e68a00',
@@ -57,7 +61,7 @@ const ProductForm = ({ onAddProduct }) => {
     }
   };
 
-  return (  
+  return (
     <Paper sx={styles.container}>
       <Typography variant="h6" gutterBottom>
         Add New Product
@@ -70,6 +74,7 @@ const ProductForm = ({ onAddProduct }) => {
           fullWidth
           margin="normal"
           sx={styles.input}
+          required
         />
         <TextField
           label="Price"
@@ -79,6 +84,7 @@ const ProductForm = ({ onAddProduct }) => {
           margin="normal"
           type="number"
           sx={styles.input}
+          required
         />
         <TextField
           label="Quantity"
@@ -88,6 +94,7 @@ const ProductForm = ({ onAddProduct }) => {
           margin="normal"
           type="number"
           sx={styles.input}
+          required
         />
         <TextField
           label="Sales"
@@ -97,6 +104,7 @@ const ProductForm = ({ onAddProduct }) => {
           margin="normal"
           type="number"
           sx={styles.input}
+          required
         />
         <TextField
           label="Image URL"
@@ -105,6 +113,7 @@ const ProductForm = ({ onAddProduct }) => {
           fullWidth
           margin="normal"
           sx={styles.input}
+          required
         />
         <Button type="submit" variant="contained" sx={styles.button} fullWidth>
           Add Product

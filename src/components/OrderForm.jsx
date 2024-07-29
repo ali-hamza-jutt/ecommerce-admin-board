@@ -30,7 +30,7 @@ const OrderForm = ({ products, onAddOrder }) => {
       marginBottom: '16px',
       backgroundColor: '#1e1e2f',
       color: '#fff',
-      marginTop:'16px'
+      marginTop: '16px',
     },
     button: {
       backgroundColor: '#e68a00',
@@ -43,7 +43,7 @@ const OrderForm = ({ products, onAddOrder }) => {
       marginBottom: '16px',
       '& .MuiOutlinedInput-root': {
         '& fieldset': {
-          borderColor: '#fff',
+          borderColor: '#fff', // Border color for TextField
         },
         '&:hover fieldset': {
           borderColor: '#fff',
@@ -63,7 +63,7 @@ const OrderForm = ({ products, onAddOrder }) => {
       marginBottom: '16px',
       '& .MuiOutlinedInput-root': {
         '& fieldset': {
-          borderColor: '#fff',
+          borderColor: '#fff', // Border color for Select field
         },
         '&:hover fieldset': {
           borderColor: '#fff',
@@ -75,11 +75,14 @@ const OrderForm = ({ products, onAddOrder }) => {
       '& .MuiInputLabel-root': {
         color: '#fff',
       },
-      '& .MuiInputBase-input': {
-        color: '#fff',
+      '& .MuiSelect-select': {
+        color: '#fff', // Text color of the selected value
       },
       '& .MuiSvgIcon-root': {
         color: '#fff',
+      },
+      '& .MuiSelect-placeholder': {
+        color: '#fff', // Placeholder color
       },
     },
   };
@@ -97,7 +100,9 @@ const OrderForm = ({ products, onAddOrder }) => {
           fullWidth
           margin="normal"
           sx={styles.select}
+          displayEmpty
         >
+          <MenuItem value="" disabled>Select a product</MenuItem>
           {products.map((product) => (
             <MenuItem key={product.id} value={product.id}>
               {product.name}

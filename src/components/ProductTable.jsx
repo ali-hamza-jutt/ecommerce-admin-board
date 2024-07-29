@@ -8,9 +8,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  InputBase,
-  Select,
-  MenuItem
+  InputBase
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -20,7 +18,7 @@ const ProductTable = ({ products }) => {
       padding: '16px',
       backgroundColor: '#1e1e2f',
       color: '#fff',
-      marginTop:'16px'
+      marginTop: '16px',
     },
     header: {
       display: 'flex',
@@ -35,22 +33,6 @@ const ProductTable = ({ products }) => {
       marginBottom: '16px',
       backgroundColor: '#2e2e3f',
       color: '#fff',
-    },
-    select: {
-      marginRight: '16px',
-      color: '#fff',
-      '.MuiOutlinedInput-notchedOutline': {
-        borderColor: '#fff',
-      },
-      '&:hover .MuiOutlinedInput-notchedOutline': {
-        borderColor: '#fff',
-      },
-      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-        borderColor: '#fff',
-      },
-      '& .MuiSvgIcon-root': {
-        color: '#fff',
-      },
     },
     input: {
       marginLeft: '8px',
@@ -68,6 +50,16 @@ const ProductTable = ({ products }) => {
     },
     tableCell: {
       color: '#fff',
+      alignItems: 'center',
+    },
+    productCell: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '10px',
+    },
+    productImage: {
+      width: 50,
+      height: 50,
     },
   };
 
@@ -94,8 +86,10 @@ const ProductTable = ({ products }) => {
             {products.map((product) => (
               <TableRow key={product.id}>
                 <TableCell sx={styles.tableCell}>
-                  <img src={product.image} alt={product.name} style={{ width: 50, height: 50, marginRight: 10 }} />
-                  {product.name}
+                  <Box sx={styles.productCell}>
+                    <img src={product.image} alt={product.name} style={styles.productImage} />
+                    <span>{product.name}</span>
+                  </Box>
                 </TableCell>
                 <TableCell sx={styles.tableCell}>{product.id}</TableCell>
                 <TableCell sx={styles.tableCell}>${product.price.toFixed(2)}</TableCell>

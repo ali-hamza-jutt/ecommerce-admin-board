@@ -12,6 +12,9 @@
     padding: 20px;
     text-align: center;
 }
+.card.table-card{
+    padding: 0;
+}
 
 .card h3 {
     margin: 0;

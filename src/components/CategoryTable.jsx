@@ -9,6 +9,7 @@ import {
   TableHead,
   TableRow
 } from '@mui/material';
+import { WidthFull } from '@mui/icons-material';
 
 const CategoryTable = ({ categories }) => {
   const styles = {
@@ -16,7 +17,7 @@ const CategoryTable = ({ categories }) => {
       padding: '16px',
       backgroundColor: '#1e1e2f',
       color: '#fff',
-      marginTop:'16px'
+      marginTop:'16px',
     },
     header: {
       marginBottom: '16px',

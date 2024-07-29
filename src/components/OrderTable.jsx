@@ -16,7 +16,7 @@ const OrderTable = ({ orders }) => {
       padding: '16px',
       backgroundColor: '#1e1e2f',
       color: '#fff',
-      marginTop:'16px'
+      marginTop: '16px'
     },
     header: {
       marginBottom: '16px',
@@ -29,6 +29,19 @@ const OrderTable = ({ orders }) => {
     },
     tableCell: {
       color: '#fff',
+    },
+    imageCell: {
+      display: 'flex',
+      alignItems: 'center',
+    },
+    image: {
+      width: 50,
+      height: 50,
+      marginRight: 10,
+    },
+    text: {
+      display: 'flex',
+      alignItems: 'center',
     },
   };
 
@@ -50,8 +63,10 @@ const OrderTable = ({ orders }) => {
             {orders.map((order) => (
               <TableRow key={order.id}>
                 <TableCell sx={styles.tableCell}>
-                  <img src={order.product.image} alt={order.product.name} style={{ width: 50, height: 50, marginRight: 10 }} />
-                  {order.product.name}
+                  <Box sx={styles.imageCell}>
+                    <img src={order.product.image} alt={order.product.name} style={styles.image} />
+                    <span style={styles.text}>{order.product.name}</span>
+                  </Box>
                 </TableCell>
                 <TableCell sx={styles.tableCell}>{order.id}</TableCell>
                 <TableCell sx={styles.tableCell}>${order.product.price.toFixed(2)}</TableCell>
