@@ -18,6 +18,7 @@ const CategoryForm = ({ onAddCategory }) => {
       marginBottom: '16px',
       backgroundColor: '#1e1e2f',
       color: '#fff',
+      marginTop:'16px'
     },
     button: {
       backgroundColor: '#e68a00',

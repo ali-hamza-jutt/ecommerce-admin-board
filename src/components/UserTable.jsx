@@ -15,7 +15,8 @@ const UserTable = ({ users }) => {
     container: {
       padding: '16px',
       backgroundColor: '#1e1e2f',
-      color: '#fff'
+      color: '#fff',
+      marginTop:'16px'
     },
     header: {
       marginBottom: '16px',
