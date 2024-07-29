@@ -44,26 +44,34 @@ const Navbar = ({ toggleSidebar }) => {
   const { isMobile } = useScreenSize();
   return (
     <nav className="navbar">
-      {isMobile ? (
-        <div className="menu-icon" onClick={toggleSidebar}>
-          <MenuRoundedIcon />
-        </div>
-      ) : null}
+      
       <div className="icons-container">
          <div className="icon"><i className="fa fa-moon"></i></div>
                  <div className="icon notification"><i className="fa fa-bell"></i><span className="badge">1</span></div>
                  <div className="icon message"><i className="fa fa-comment"></i><span className="badge">1</span></div>
                  <div className="icon"><i className="fa fa-expand"></i></div>
                  <div className="icon"><i className="fa fa-th"></i></div>
-        <div className="profile">
+                 <div className="profile">
           <img src="https://via.placeholder.com/40" alt="Profile" />
           <span>Kristin Watson</span>
         </div>
-        <div className="icon">
-          <i className="fa fa-cog"></i>
+                 </div>
+
+        <div className="menu-container">
+        {isMobile ? (
+        <div className="menu-icon" onClick={toggleSidebar}>
+          <MenuRoundedIcon />
         </div>
+      ) : null}
+        
+        <div className="icon">
         <button className="login-button" onClick={() => navigate('/admin-login')}>Admin Login</button>
-      </div>
+        </div>
+          <i className="fa fa-cog"></i>
+            </div>         
+
+        
+      
     </nav>
   );
 };
