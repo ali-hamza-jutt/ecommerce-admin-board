@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
   Drawer,
   List,
@@ -31,6 +31,25 @@ const Sidebar = ({ isOpen, toggleSidebar, setSelectedComponent }) => {
     roles: false,
   });
 
+  const sidebarRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+      toggleSidebar();
+    }
+  };
+
+  useEffect(() => {
+    if (isMobile && isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isMobile, isOpen]);
+
   const handleClick = (item) => {
     setOpen((prevOpen) => ({ ...prevOpen, [item]: !prevOpen[item] }));
   };
@@ -40,13 +59,14 @@ const Sidebar = ({ isOpen, toggleSidebar, setSelectedComponent }) => {
       minHeight: '100vh',
       width: 240,
       flexShrink: 0,
-      transition: 'transform 0.3s ease-in-out',
+      transition: 'transform 0.3s ease',
       transform: isOpen ? 'translateX(0)' : 'translateX(-100%)',
       '& .MuiDrawer-paper': {
         width: 240,
         boxSizing: 'border-box',
         backgroundColor: '#1e1e2f',
         color: '#fff',
+        transition: 'transform 0.3s ease',
       },
     },
     mobileHeader: {
@@ -87,7 +107,13 @@ const Sidebar = ({ isOpen, toggleSidebar, setSelectedComponent }) => {
   };
 
   return (
-    <Drawer variant={isMobile ? "temporary" : "permanent"} sx={styles.drawer} open={isOpen} onClose={toggleSidebar}>
+    <Drawer
+      variant={isMobile ? "temporary" : "permanent"}
+      sx={styles.drawer}
+      open={isOpen}
+      onClose={toggleSidebar}
+      ref={sidebarRef}
+    >
       <List
         subheader={
           <ListSubheader component="div" id="nested-list-subheader" sx={styles.logo}>
