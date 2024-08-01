@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import {
   Drawer,
   List,
@@ -32,6 +32,7 @@ const Sidebar = ({ isOpen, toggleSidebar, setSelectedComponent }) => {
   });
 
   const sidebarRef = useRef(null);
+  const [closing, setClosing] = useState(false);
 
   const handleClickOutside = (event) => {
     if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
@@ -54,19 +55,27 @@ const Sidebar = ({ isOpen, toggleSidebar, setSelectedComponent }) => {
     setOpen((prevOpen) => ({ ...prevOpen, [item]: !prevOpen[item] }));
   };
 
+  useEffect(() => {
+    if (!isOpen) {
+      setClosing(true);
+      const timer = setTimeout(() => setClosing(false), 500); // Match transition duration
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
   const styles = {
     drawer: {
       minHeight: '100vh',
       width: 240,
       flexShrink: 0,
-      transition: 'transform 0.3s ease',
-      transform: isOpen ? 'translateX(0)' : 'translateX(-100%)',
+      transition: 'transform 0.5s ease', // Increased duration for opening
+      transform: isOpen ? 'translateX(0)' : closing ? 'translateX(-100%)' : 'translateX(-100%)',
       '& .MuiDrawer-paper': {
         width: 240,
         boxSizing: 'border-box',
         backgroundColor: '#1e1e2f',
         color: '#fff',
-        transition: 'transform 0.3s ease',
+        transition: 'transform 0.5s ease', // Increased duration for opening
       },
     },
     mobileHeader: {
